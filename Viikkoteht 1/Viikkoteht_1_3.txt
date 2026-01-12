@@ -1,0 +1,45 @@
+A) 
+
+mysql> DELETE FROM  pet where name='Puffball';
+
+B) 
+
+mysql> UPDATE pet SET birth='1989-08-31' WHERE name='Bowser';
+
+C) 
+
+mysql> UPDATE pet SET death='2000-09-15' WHERE name='Chirpy';
+
+D) 
+
+mysql> SELECT * FROM pet WHERE birth >= '1990-01-01';
++----------+--------+---------+------+------------+------------+
+| name     | owner  | species | sex  | birth      | death      |
++----------+--------+---------+------+------------+------------+
+| Fluffy   | Harold | cat     | f    | 1993-02-04 | NULL       |
+| Claws    | Gwen   | cat     | m    | 1994-03-17 | NULL       |
+| Fang     | Benny  | dog     | m    | 1990-08-27 | NULL       |
+| Chirpy   | Gwen   | bird    | f    | 1998-09-11 | 2000-09-15 |
+| Whistler | Gwen   | bird    | NULL | 1997-12-09 | NULL       |
+| Slim     | Benny  | snake   | m    | 1996-04-29 | NULL       |
++----------+--------+---------+------+------------+------------+
+6 rows in set (0.00 sec)
+
+E)
+
+mysql> SELECT * FROM pet WHERE (species='dog' AND sex='m');
++--------+-------+---------+------+------------+------------+
+| name   | owner | species | sex  | birth      | death      |
++--------+-------+---------+------+------------+------------+
+| Fang   | Benny | dog     | m    | 1990-08-27 | NULL       |
+| Bowser | Diane | dog     | m    | 1989-08-31 | 1995-07-29 |
++--------+-------+---------+------+------------+------------+
+2 rows in set (0.01 sec)
+
+F)
+
+mysql> SELECT name FROM pet WHERE (species='dog' AND sex='m');
+
+G)
+
+mysql> SELECT name, owner  FROM pet WHERE (species='dog' AND sex='m');
