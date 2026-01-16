@@ -1,0 +1,27 @@
+A)
+
+SELECT * FROM departments;
+
+B)
+
+SELECT DISTINCT title FROM titles;
+
+C)
+
+SELECT MIN(salary), MAX(salary) FROM salaries;
+
+D)
+
+SELECT AVG(salary) FROM salaries;
+
+E)
+
+SELECT * FROM employees WHERE (last_name = 'Facello');
+
+F)
+
+SELECT * FROM employees WHERE birth_date >= '1950-01-01' AND birth_date < '1960-01-01';
+
+G)
+
+SELECT gender,count(*) FROM employees GROUP BY gender;
