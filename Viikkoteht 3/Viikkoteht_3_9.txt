@@ -1,0 +1,65 @@
+
+
+mysql> select * from opiskelija;
++--------------+---------+----------+-----------------+--------------+
+| idOpiskelija | Etunimi | Sukunimi | Osoite          | Luokkatunnus |
++--------------+---------+----------+-----------------+--------------+
+|            2 | Aku     | Ankka    | Paratiisitie 13 | TVT25SPL     |
+|            3 | Roope   | Ankka    | Rahasäiliö      | TVT25SPL     |
+|            4 | Mikki   | Hiiri    | Kyylätie 1      | TVT25SPO     |
+|            5 | Hessu   | Hopo     | Ruskotunturi    | TVT25SPO     |
+|            6 | Musta   | Kaapu    | Pahisluola      | TVT25SPL     |
+|            7 | Sikari  | Sakari   | Konnala 6       | TVT25SPO     |
++--------------+---------+----------+-----------------+--------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from opintojakso;
++---------------+---------+---------+---------------------------+
+| idOpintojakso | Koodi   | Laajuus | Nimi                      |
++---------------+---------+---------+---------------------------+
+|             2 | in00222 |       5 | Tietokannat ja rajapinnat |
+|             3 | in00223 |       5 | Olio-ohjelmointi          |
+|             4 | in00224 |       5 | Matematiikka 2            |
+|             5 | in00225 |       5 | Fysiikka ja elektroniikka |
+|             6 | in00226 |       5 | Kellarihumppa             |
+|             7 | in00227 |       5 | Ruotsi                    |
+|             8 | in00228 |       3 | Esoterian alkeet          |
++---------------+---------+---------+---------------------------+
+7 rows in set (0.00 sec)
+
+mysql> select etunimi,sukunimi,arvosana,paivamaara,nimi from Arviointi JOIN Opiskelija on Opiskelija.idOpiskelija = Arviointi.idOpiskelija JOIN Opintojakso on Opintojakso.idOpintojakso = Arviointi.idOpintojakso;
++---------+----------+----------+------------+---------------------------+
+| etunimi | sukunimi | arvosana | paivamaara | nimi                      |
++---------+----------+----------+------------+---------------------------+
+| Aku     | Ankka    |        5 | 2026-01-22 | Tietokannat ja rajapinnat |
+| Aku     | Ankka    |        3 | 2026-01-22 | Olio-ohjelmointi          |
+| Aku     | Ankka    |        2 | 2026-01-22 | Matematiikka 2            |
+| Aku     | Ankka    |        3 | 2026-01-22 | Fysiikka ja elektroniikka |
+| Aku     | Ankka    |        5 | 2026-01-22 | Kellarihumppa             |
+| Aku     | Ankka    |        0 | 2026-01-23 | Ruotsi                    |
+| Roope   | Ankka    |        4 | 2026-01-22 | Tietokannat ja rajapinnat |
+| Roope   | Ankka    |        2 | 2026-01-22 | Matematiikka 2            |
+| Roope   | Ankka    |        5 | 2026-01-22 | Kellarihumppa             |
+| Roope   | Ankka    |        4 | 2026-01-22 | Ruotsi                    |
+| Mikki   | Hiiri    |        5 | 2026-01-22 | Tietokannat ja rajapinnat |
+| Mikki   | Hiiri    |        5 | 2026-01-22 | Olio-ohjelmointi          |
+| Mikki   | Hiiri    |        5 | 2026-01-22 | Matematiikka 2            |
+| Mikki   | Hiiri    |        5 | 2026-01-22 | Fysiikka ja elektroniikka |
+| Mikki   | Hiiri    |        4 | 2026-01-22 | Kellarihumppa             |
+| Mikki   | Hiiri    |        5 | 2026-01-22 | Ruotsi                    |
+| Hessu   | Hopo     |        1 | 2026-01-22 | Tietokannat ja rajapinnat |
+| Hessu   | Hopo     |        2 | 2026-01-22 | Fysiikka ja elektroniikka |
+| Hessu   | Hopo     |        5 | 2026-01-22 | Kellarihumppa             |
+| Musta   | Kaapu    |        2 | 2026-01-22 | Olio-ohjelmointi          |
+| Musta   | Kaapu    |        2 | 2026-01-22 | Matematiikka 2            |
+| Musta   | Kaapu    |        1 | 2026-01-22 | Kellarihumppa             |
+| Musta   | Kaapu    |        1 | 2026-01-22 | Ruotsi                    |
+| Musta   | Kaapu    |        0 | 2026-01-23 | Tietokannat ja rajapinnat |
+| Sikari  | Sakari   |        0 | 2026-01-23 | Tietokannat ja rajapinnat |
+| Sikari  | Sakari   |        0 | 2026-01-23 | Olio-ohjelmointi          |
+| Sikari  | Sakari   |        5 | 2026-01-23 | Kellarihumppa             |
+| Sikari  | Sakari   |        1 | 2026-01-23 | Ruotsi                    |
++---------+----------+----------+------------+---------------------------+
+28 rows in set (0.00 sec)
+
+

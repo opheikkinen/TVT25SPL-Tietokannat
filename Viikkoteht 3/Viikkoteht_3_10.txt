@@ -1,0 +1,35 @@
+1)
+
+SELECT etunimi,sukunimi,arvosana,nimi FROM Arviointi
+JOIN Opiskelija ON Opiskelija.idOpiskelija = Arviointi.idOpiskelija
+JOIN Opintojakso ON Opintojakso.idOpintojakso = Arviointi.idOpintojakso
+WHERE arvosana = 0;
+
+2)
+
+SELECT etunimi,sukunimi,arvosana,nimi FROM Arviointi
+JOIN Opiskelija ON Opiskelija.idOpiskelija = Arviointi.idOpiskelija
+JOIN Opintojakso ON Opintojakso.idOpintojakso = Arviointi.idOpintojakso
+WHERE nimi = 'Olio-ohjelmointi'AND arvosana > 0;
+
+3)
+
+SELECT etunimi,sukunimi,nimi FROM Arviointi
+JOIN Opiskelija ON Opiskelija.idOpiskelija = Arviointi.idOpiskelija
+JOIN Opintojakso ON Opintojakso.idOpintojakso = Arviointi.idOpintojakso
+WHERE sukunimi = 'Hopo';
+
+4)
+
+SELECT AVG(arvosana) FROM Arviointi 
+JOIN Opiskelija ON Opiskelija.idOpiskelija = Arviointi.idOpiskelija
+JOIN Opintojakso ON Opintojakso.idOpintojakso = Arviointi.idOpintojakso
+WHERE etunimi = 'Aku';
+
+5)
+
+SELECT nimi FROM Opintojakso
+LEFT JOIN Arviointi ON Opintojakso.idOpintojakso = Arviointi.idOpintojakso
+WHERE idOpiskelija IS NULL;
+
+
