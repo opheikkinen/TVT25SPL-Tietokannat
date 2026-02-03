@@ -1,0 +1,108 @@
+INSERT INTO asiakas VALUES (NULL,'Aku','Ankka','Paratiisitie 13','0409387483');
+INSERT INTO asiakas VALUES (NULL,'Tupu','Ankka','Paratiisitie 13','0409399483');
+INSERT INTO asiakas VALUES (NULL,'Minni','Hiiri','Kyyläkuja 6','0400887483');
+INSERT INTO asiakas VALUES (NULL,'Pelle','Peloton','Nerokylä 01','0409387453');
+
+mysql> select * from asiakas;
++-----------+---------+----------+-----------------+---------------+
+| idAsiakas | Etunimi | Sukunimi | Osoite          | Puhelinnumero |
++-----------+---------+----------+-----------------+---------------+
+|         1 | Aku     | Ankka    | Paratiisitie 13 | 0409387483    |
+|         2 | Tupu    | Ankka    | Paratiisitie 13 | 0409399483    |
+|         3 | Minni   | Hiiri    | Kyyläkuja 6     | 0400887483    |
+|         4 | Pelle   | Peloton  | Nerokylä 01     | 0409387453    |
++-----------+---------+----------+-----------------+---------------+
+
+INSERT INTO teos VALUES (NULL,'Ajan lyhyt historia','951-0-19440');
+INSERT INTO teos VALUES (NULL,'Virtuaalivalo','978-06-56740');
+INSERT INTO teos VALUES (NULL,'Necronomicon','851-66-650440');
+INSERT INTO teos VALUES (NULL,'Taikatalvi','1-09856-82754');
+INSERT INTO teos VALUES (NULL,'Hyviä enteitä','001-76-19784');
+INSERT INTO teos VALUES (NULL,'Taikatalvi','67-077756-8567');
+
+mysql> select * from teos;
++--------+---------------------+----------------+
+| idTeos | Nimi                | ISBN           |
++--------+---------------------+----------------+
+|      1 | Ajan lyhyt historia | 951-0-19440    |
+|      2 | Virtuaalivalo       | 978-06-56740   |
+|      3 | Necronomicon        | 851-66-650440  |
+|      4 | Taikatalvi          | 1-09856-82754  |
+|      5 | Hyviä enteitä       | 001-76-19784   |
+|      6 | Taikatalvi          | 67-077756-8567 |
++--------+---------------------+----------------+
+
+INSERT INTO kirja VALUES (NULL,'Tietokirja',1);
+INSERT INTO kirja VALUES (NULL,'Romaani',2);
+INSERT INTO kirja VALUES (NULL,'Loitsukirja',3);
+INSERT INTO kirja VALUES (NULL,'Romaani',4);
+INSERT INTO kirja VALUES (NULL,'Romaani',5);
+INSERT INTO kirja VALUES (NULL,'Romaani',6);
+
+mysql> select * from kirja;
++---------+-------------+--------+
+| idKirja | Luokitus    | idTeos |
++---------+-------------+--------+
+|       1 | Tietokirja  |      1 |
+|       2 | Romaani     |      2 |
+|       3 | Loitsukirja |      3 |
+|       4 | Romaani     |      4 |
+|       5 | Romaani     |      5 |
+|       6 | Romaani     |      6 |
++---------+-------------+--------+
+
+INSERT INTO tekijä VALUES (NULL,'Stephen','Hawking');
+INSERT INTO tekijä VALUES (NULL,'William','Gibson');
+INSERT INTO tekijä VALUES (NULL,'Abdul','Alhazred');
+INSERT INTO tekijä VALUES (NULL,'Tove','Jansson');
+INSERT INTO tekijä VALUES (NULL,'Terry','Pratchett');
+INSERT INTO tekijä VALUES (NULL,'Neil','Gaiman');
+
+mysql> select * from tekijä;
++-----------+---------+-----------+
+| idTekijä  | Etunimi | Sukunimi  |
++-----------+---------+-----------+
+|         1 | Stephen | Hawking   |
+|         2 | William | Gibson    |
+|         3 | Abdul   | Alhazred  |
+|         4 | Tove    | Jansson   |
+|         5 | Terry   | Pratchett |
+|         6 | Neil    | Gaiman    |
++-----------+---------+-----------+
+
+INSERT INTO tekijä_teos VALUES (1,1);
+INSERT INTO tekijä_teos VALUES (2,2);
+INSERT INTO tekijä_teos VALUES (3,3);
+INSERT INTO tekijä_teos VALUES (4,4);
+INSERT INTO tekijä_teos VALUES (5,5);
+INSERT INTO tekijä_teos VALUES (5,6);
+INSERT INTO tekijä_teos VALUES (6,4);
+
+mysql> select * from tekijä_teos;
++--------+-----------+
+| idTeos | idTekijä  |
++--------+-----------+
+|      1 |         1 |
+|      2 |         2 |
+|      3 |         3 |
+|      4 |         4 |
+|      6 |         4 |
+|      5 |         5 |
+|      5 |         6 |
++--------+-----------+
+
+INSERT INTO lainaus VALUES (NULL,'2026-01-26','2026-02-26',1,1,1);
+INSERT INTO lainaus VALUES (NULL,'2025-12-06','2026-01-06',1,3,3);
+INSERT INTO lainaus VALUES (NULL,'2025-11-10','2025-12-10',0,5,2);
+INSERT INTO lainaus VALUES (NULL,'2026-01-30','2026-03-01',0,6,1);
+
+mysql> select * from lainaus;
++-----------+------------+-------------+------------+---------+-----------+
+| idLainaus | LainausPVM | PalautusPVM | Palautettu | idKirja | idAsiakas |
++-----------+------------+-------------+------------+---------+-----------+
+|         1 | 2026-01-26 | 2026-02-26  |          1 |       1 |         1 |
+|         2 | 2025-12-06 | 2026-01-06  |          1 |       3 |         3 |
+|         3 | 2025-11-10 | 2025-12-10  |          0 |       5 |         2 |
+|         4 | 2026-01-30 | 2026-03-01  |          0 |       6 |         1 |
++-----------+------------+-------------+------------+---------+-----------+
+

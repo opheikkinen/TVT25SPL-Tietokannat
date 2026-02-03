@@ -1,0 +1,76 @@
+C)
+
+CREATE PROCEDURE palauttamatta()
+
+BEGIN
+
+SELECT etunimi, sukunimi, palautettu, nimi FROM Lainaus
+JOIN Asiakas ON Asiakas.idAsiakas = Lainaus.idAsiakas
+JOIN Kirja ON Lainaus.idKirja = Kirja.idKirja
+JOIN Teos ON Teos.idTeos = kirja.idTeos
+WHERE palautettu = 0;
+
+END 
+
+D)
+
+CREATE PROCEDURE LisaaSuoritus(IN etuNimi VARCHAR(45), IN sukuNimi VARCHAR(45), IN kurssi VARCHAR(45), IN arvosana INT)
+
+Aliohjelma:BEGIN 
+
+declare OpiskID INT DEFAULT 0;
+declare jaksoID INT DEFAULT 0;
+
+SELECT idOpiskelija INTO OpiskID FROM Opiskelija WHERE Etunimi=etuNimi AND Sukunimi=sukuNimi LIMIT 1;
+
+IF OpiskID=0 then 
+     SELECT 'Opiskelijaa ei ole'; 
+     LEAVE Aliohjelma;
+END IF;
+
+SELECT idOpintojakso INTO jaksoID FROM opintojakso WHERE Koodi=kurssi LIMIT 1;
+
+IF jaksoID=0 then 
+     SELECT 'Opintojaksoa ei ole'; 
+     LEAVE Aliohjelma;
+END IF;
+
+IF arvosana < 0 OR arvosana > 5 then
+	SELECT 'Arvosana on väärin';
+	LEAVE Aliohjelma;
+END IF;
+
+INSERT INTO Arviointi VALUES(NULL,CURDATE(),arvosana,jaksoID,OpiskID);
+
+END 
+
+E)
+
+CREATE PROCEDURE PoistaSuoritus(IN etuNimi VARCHAR(45), IN sukuNimi VARCHAR(45), IN kurssi VARCHAR(45))
+
+Aliohjelma:BEGIN
+
+declare OpiskID INT DEFAULT 0;
+declare jaksoID INT DEFAULT 0;
+
+SELECT idOpiskelija INTO OpiskID FROM Opiskelija WHERE Etunimi=etuNimi AND Sukunimi=sukuNimi LIMIT 1;
+
+IF OpiskID=0 then 
+     SELECT 'Opiskelijaa ei ole'; 
+     LEAVE Aliohjelma;
+END IF;
+
+SELECT idOpintojakso INTO jaksoID FROM opintojakso WHERE Koodi=kurssi LIMIT 1;
+
+IF jaksoID=0 then 
+     SELECT 'Opintojaksoa ei ole'; 
+     LEAVE Aliohjelma;
+END IF;
+
+DELETE FROM arviointi WHERE idOpiskelija = OpiskID AND idOpintojakso = jaksoID;
+
+END
+
+
+
+
