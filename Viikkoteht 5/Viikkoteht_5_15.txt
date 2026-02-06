@@ -1,0 +1,56 @@
+A)
+
+CREATE PROCEDURE arvosanat_alas()
+
+BEGIN
+
+DECLARE arvos INT;
+DECLARE ID INT;
+DECLARE done BOOLEAN DEFAULT FALSE;
+DECLARE arvos_cursor CURSOR FOR SELECT idArviointi, Arvosana FROM Arviointi;
+DECLARE CONTINUE HANDLER FOR NOT FOUND SET done=TRUE;
+
+OPEN arvos_cursor;
+
+arvos_loop: LOOP
+FETCH arvos_cursor INTO ID, arvos;
+
+IF done THEN
+CLOSE arvos_cursor;
+LEAVE arvos_loop;
+END IF;
+
+UPDATE Arviointi SET Arvosana=arvos-1 WHERE idArviointi=ID AND
+Arvosana >= 1;
+END LOOP;
+
+END 
+
+B)
+
+CREATE PROCEDURE tunnus_vaihto()
+
+BEGIN
+
+DECLARE tunnus VARCHAR(10);
+DECLARE ID INT;
+DECLARE done BOOLEAN DEFAULT FALSE;
+DECLARE tunnus_cursor CURSOR FOR SELECT idOpiskelija, Luokkatunnus FROM Opiskelija;
+DECLARE CONTINUE HANDLER FOR NOT FOUND SET done=TRUE;
+
+OPEN tunnus_cursor;
+
+tunnus_loop: LOOP
+FETCH tunnus_cursor INTO ID, tunnus;
+
+IF done THEN
+CLOSE tunnus_cursor;
+LEAVE tunnus_loop;
+END IF;
+
+UPDATE Opiskelija SET Luokkatunnus='TVT25SP' WHERE idOpiskelija=ID AND
+Luokkatunnus = 'TVT25SPL';
+END LOOP;
+
+END 
+
